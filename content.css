@@ -1,0 +1,21 @@
+.pdf-item {
+    display: inline-block;
+    width: 300px;
+    margin: 20px;
+    text-align: center;
+}
+
+.pdf-item img {
+    width: 200px;
+    height: 250px;
+    object-fit: cover;
+}
+
+.pdf-viewer {
+    width: 100%;
+    height: 80vh;
+}
+
+.hidden {
+    display: none;
+}

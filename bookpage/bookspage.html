@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PDF Gallery</title>
+    <style>
+        body{
+            background-color: #021825;
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: white;
+        }
+        .pdf-item {
+            display: inline-block;
+            width: 300px;
+            margin: 20px;
+            text-align: center;
+        }
+
+        .pdf-item img {
+            width: 200px;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .pdf-viewer {
+            width: 100%;
+            height: 80vh;
+        }
+
+        .hidden {
+            display: none;
+        }
+        /*Hame section style*/
+        section{
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #home{
+            background-color: #f7dc6f;
+            padding: 20px;
+            text-align: center;
+        }
+        #home h1{
+            margin-top: 0;
+            color: black;
+        }
+        #home p{
+            margin-top: 0;
+            color: black;
+        }
+        /* End of Hame section style*/
+    </style>
+</head>
+<body>
+
+    <section id="home">
+        <h1>Welcome to Kayirah.mw</h1>
+        <p>We offer higher range of interest
+            from education to entertainment.
+        </p>
+    </section>
+
+    <div id="pdf-container">
+        </div>
+
+    <div id="pdf-viewer-container" class="hidden">
+        <embed id="pdf-viewer" class="pdf-viewer" type="application/pdf">
+        <button onclick="goBack()">Go Back</button>
+    </div>
+
+    <script>
+        const pdfData = [
+            {
+                name: "Introduction to modern physics",
+                thumbnail: "lecture1.png", // Replace with actual thumbnail path
+                pdf: "LECTURE_1.pdf" // Replace with actual PDF path
+            },
+            {
+                name: "Girls at War and Other Stories",
+                thumbnail: "Achebe_Chinua_-_Girls_at_War_and_Other_Stories_201.png",
+                pdf: "Achebe_Chinua_-_Girls_at_War_and_Other_Stories_201.pdf"
+            },
+            {
+                name: "Ego Is the Enemy",
+                thumbnail: "Ego_Is_the_Enemy_-_Ryan_Holiday.png",
+                pdf: "Ego_Is_the_Enemy_-_Ryan_Holiday.pdf"
+            },
+            {
+                name: "PRESENTATION INTEGRATION",
+                thumbnail: "PRESENTATION-INTEGRATION.png",
+                pdf: "PRESENTATION-INTEGRATION.pdf"
+            },
+            {
+                name: "TEMPERATURE AND RATE",
+                thumbnail: "LECTURE 2 TEMPERATURE AND RATE.png",
+                pdf: "LECTURE 2 TEMPERATURE AND RATE.pdf"
+            },
+            {
+                name: "Search algorithm",
+                thumbnail: "Search algorithm.png",
+                pdf: "Search algorithm.pdf"
+            },
+            {
+                name: "RATES AND RATE LAWS",
+                thumbnail: "LECTURE 1 RATES AND RATE LAWS.png", // Replace with actual thumbnail path
+                pdf: "LECTURE 1 RATES AND RATE LAWS.pdf" // Replace with actual PDF path
+            },
+            {
+                name: "Surrounded by Idiots",
+                thumbnail: "Surrounded by Idiots.png",
+                pdf: "Surrounded by Idiots.pdf"
+            },
+            {
+                name: "What to Do_When Faith Seems Weak Victory Lost",
+                thumbnail: "What_to_Do_When_Faith_Seems_Weak_Victory_Lost_Kenneth_E_Hagin_Hagin.png",
+                pdf: "What_to_Do_When_Faith_Seems_Weak_Victory_Lost_Kenneth_E_Hagin_Hagin.pdf"
+            },
+            {
+                name: "Differentiations Notes",
+                thumbnail: "Differentiations Notes.png",
+                pdf: "Differentiations Notes.pdf"
+            },
+            {
+                name: "Artificial Inteliegence",
+                thumbnail: "Artificial Inteliegence lesson 1.png",
+                pdf: "Artificial Inteliegence lesson 1.pdf"
+            },
+            {
+                name: "Introduction to Agricultural Economics",
+                thumbnail: "INTRODUCTION TO AGRICULTURAL ECONOMICS.png",
+                pdf: "INTRODUCTION TO AGRICULTURAL ECONOMICS.pdf"
+            }
+            // Add more PDF entries as needed
+        ];
+
+        const pdfContainer = document.getElementById("pdf-container");
+        const pdfViewerContainer = document.getElementById("pdf-viewer-container");
+        const pdfViewer = document.getElementById("pdf-viewer");
+
+        pdfData.forEach(item => {
+            const pdfItem = document.createElement("div");
+            pdfItem.classList.add("pdf-item");
+
+            const thumbnail = document.createElement("img");
+            thumbnail.src = item.thumbnail;
+            pdfItem.appendChild(thumbnail);
+
+            const name = document.createElement("p");
+            name.textContent = item.name;
+            pdfItem.appendChild(name);
+
+            const viewButton = document.createElement("button");
+            viewButton.textContent = "View";
+            viewButton.addEventListener("click", () => viewPdf(item.pdf));
+            pdfItem.appendChild(viewButton);
+
+            pdfContainer.appendChild(pdfItem);
+        });
+
+        function viewPdf(pdfPath) {
+            pdfViewer.src = pdfPath + "#toolbar=0&navpanes=0&scrollbar=0"; //Disable download and other tools.
+            pdfContainer.classList.add("hidden");
+            pdfViewerContainer.classList.remove("hidden");
+        }
+
+        function goBack() {
+            pdfViewerContainer.classList.add("hidden");
+            pdfContainer.classList.remove("hidden");
+        }
+    </script>
+</body>
+</html>
